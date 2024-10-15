@@ -1,0 +1,96 @@
+/* Estilo do corpo */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: url('https://i.pinimg.com/236x/03/e8/fd/03e8fd5ca30115e6229e6616192277d4.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    
+}
+
+/* Estilo da calculadora */
+.calculator {
+    border: 5px solid #afafaf;
+    border-radius: 20px;
+    padding: 40px;
+    background: rgba(238, 234, 236, 0.9);
+    box-shadow: 0 4px 10px rgba(29, 27, 27, 0.938);
+    width: 400px;
+}
+
+#display {
+    width: 400px;
+    height: 99px;
+    font-size: 40px;
+    text-align: right;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: none;
+    font-weight: bold;
+    color: #ad31c5;
+    box-sizing: border-box;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Estilo dos botões */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+/* Botões numéricos - fundo branco e texto preto, sem bordas */
+button.number {
+    background-color: white;
+    color: #ad31c5;
+    font-weight: bold;
+    font-size: 18px; /* Aumenta o tamanho do número */
+    border: 3px solid rgba(207, 205, 206, 0.9); /* Adiciona bordas sólidas */
+    border-radius: 10px; /* Arredondamento das bordas */
+    padding: 20px; /* Ajusta o espaçamento interno */
+}
+/* Botões de símbolos e funções - fundo rosa claro e texto rosa */
+button.symbol, button.function {
+    background-color: #fafafa;
+    color: #ad31c5;
+    font-weight: bold;
+    font-size: 18px;
+    border: 3px solid rgba(207, 205, 206, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    
+}
+
+/* Botões especiais (C e ←) */
+button.special {
+    background-color: #f8fffa;
+    color: #ad31c5;
+    font-weight: bold;
+    border:3px solid rgba(207, 205, 206, 0.9) ;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* Botão C maior */
+button.clear {
+    grid-column: span 2; /* Ocupa duas colunas */
+    height: 80px;
+    font-size: 22px;
+}
+
+/* Botão de igual */
+button.equals {
+    background-color: #ad31c5;
+    color: white;
+    font-size: 22px;
+    grid-column: span 2; /* Ocupa duas colunas */
+    padding: 20px;
+    height: 60px;
+    border-radius: 10px;
+    border: 3px solid rgba(207, 205, 206, 0.9) ;
+    border-radius: 10px;;
+}
+
