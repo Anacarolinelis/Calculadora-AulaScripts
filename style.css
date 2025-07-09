@@ -30,7 +30,7 @@ body {
 
 #display-container {
   background-color: #926cdf; 
-  flex: 0 0 150px;
+  flex: 0 0 200px;
   padding: 30px 30px;
   text-align: right;
   min-height: auto;
@@ -61,7 +61,7 @@ body {
 .buttons {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
+  gap: 2px;
   padding: 20px 20px 30px 20px;
   box-sizing: border-box;
   flex-grow: 1;
@@ -69,8 +69,10 @@ body {
 
 /* Estilos de botão base */
 button {
-  width: 75px;
-  height: 75px;
+  aspect-ratio: 1/1;
+  max-width: 85px;  /* aumente esse valor conforme quiser */
+  max-height: 85px;
+  width: 100%;
   font-size: 22px;
   font-weight: 600;
   border-radius: 50%;
@@ -80,7 +82,6 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto;
 }
 
 /* Estilo por tipo */
@@ -107,10 +108,13 @@ button.special {
 /* Botão =  */
 button.equals {
   grid-column: span 2;
-  height: 75px;
-  border-radius: 40px;
+  height: 90px;
+  width: 95%;
+  max-width: none;
+  max-height: none;
+  aspect-ratio: auto;
+  border-radius: 60%; 
   font-size: 22px;
-  width: 100%;
 }
 
 /* Efeito de clique */
@@ -174,7 +178,7 @@ body.light-theme button.function {
 }
 
 body.light-theme button.special {
-  background-color: #8c6ca079;
+  background-color: #cb94ee;
   color: #09040c;
 }
 
