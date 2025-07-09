@@ -1,96 +1,255 @@
-/* Estilo do corpo */
+/* Reset e base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: url('https://i.pinimg.com/236x/03/e8/fd/03e8fd5ca30115e6229e6616192277d4.jpg') no-repeat center center fixed;
-    background-size: cover;
-    font-family: Arial, sans-serif;
-    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url('https://i.pinimg.com/236x/03/e8/fd/03e8fd5ca30115e6229e6616192277d4.jpg') no-repeat center center fixed;
+  background-size: cover;
 }
 
-/* Estilo da calculadora */
-.calculator {
-    border: 5px solid #afafaf;
-    border-radius: 20px;
-    padding: 40px;
-    background: rgba(238, 234, 236, 0.9);
-    box-shadow: 0 4px 10px rgba(29, 27, 27, 0.938);
-    width: 400px;
+/* Responsivo */
+.calculator {  
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  width: 400px;
+  border-radius: 20px;
+  background: #9a6cd3;
+  overflow: hidden;
+  padding: 0;
 }
 
-#display {
-    width: 400px;
-    height: 99px;
-    font-size: 40px;
-    text-align: right;
-    margin-bottom: 15px;
-    padding: 10px;
-    border: none;
-    font-weight: bold;
-    color: #ad31c5;
-    box-sizing: border-box;
-    white-space: nowrap;
-    overflow: hidden;
+#display-container {
+  background-color: #926cdf; 
+  flex: 0 0 190px;
+  padding: 10px 16px;
+  text-align: right;
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 15px;
+  width: 100%;
+  border-radius: 20px;
 }
 
-/* Estilo dos botões */
+#expression {
+  font-size: 49px;
+  color: #5b3fae;
+  font-weight: bold;
+  margin: 0%;
+  word-break: break-word;
+}
+
+#result {
+  font-size: 35px;
+  color: #321f89;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+/* Grade de botões */
 .buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 15px;
+  box-sizing: border-box;
+  flex-grow: 2;
 }
 
-/* Botões numéricos - fundo branco e texto preto, sem bordas */
+/* Estilos de botão base */
+button {
+  width: 100%;
+  height: 100%;
+  font-size: 24px;
+  font-weight: 600;
+  border-radius: 30%;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.15s ease;
+}
+
+/* Estilo por tipo */
 button.number {
-    background-color: white;
-    color: #ad31c5;
-    font-weight: bold;
-    font-size: 18px; /* Aumenta o tamanho do número */
-    border: 3px solid rgba(207, 205, 206, 0.9); /* Adiciona bordas sólidas */
-    border-radius: 10px; /* Arredondamento das bordas */
-    padding: 20px; /* Ajusta o espaçamento interno */
-}
-/* Botões de símbolos e funções - fundo rosa claro e texto rosa */
-button.symbol, button.function {
-    background-color: #fafafa;
-    color: #ad31c5;
-    font-weight: bold;
-    font-size: 18px;
-    border: 3px solid rgba(207, 205, 206, 0.9);
-    border-radius: 10px;
-    padding: 20px;
-    
+  background-color: #e3dbf9;
+  color: #472a85;
 }
 
-/* Botões especiais (C e ←) */
+button.symbol {
+  background-color: #8168e5;
+  color: #fff;
+}
+
+button.function {
+  background-color: #d4c4f6;
+  color: #3a297b;
+}
+
 button.special {
-    background-color: #f8fffa;
-    color: #ad31c5;
-    font-weight: bold;
-    border:3px solid rgba(207, 205, 206, 0.9) ;
-    border-radius: 10px;
-    padding: 20px;
+  background-color: #c0aee0;
+  color: #3c2896;
 }
 
-/* Botão C maior */
-button.clear {
-    grid-column: span 2; /* Ocupa duas colunas */
-    height: 80px;
-    font-size: 22px;
-}
-
-/* Botão de igual */
+/* Botão =  */
 button.equals {
-    background-color: #ad31c5;
-    color: white;
-    font-size: 22px;
-    grid-column: span 2; /* Ocupa duas colunas */
-    padding: 20px;
-    height: 60px;
-    border-radius: 10px;
-    border: 3px solid rgba(207, 205, 206, 0.9) ;
-    border-radius: 10px;;
+  grid-column: span 2;
+  background-color: #5e0e8d;
+  color: #f0e9ff;
+  border-radius: 30px;
 }
 
+/* Efeito de clique */
+button:active {
+  transform: scale(0.94);
+  filter: brightness(0.9);
+}
+
+/* Troca de tema */
+.theme-toggle {
+  font-size: 16px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #fff;
+  z-index: 10;
+}
+
+.theme-toggle select {
+  margin-left: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+/* Tema claro */
+body.light-theme {
+  background-color: #ffffff;
+}
+
+body.light-theme .calculator {
+  background-color: #fcf5ff;
+}
+
+body.light-theme #display-container {
+  background-color: #c486e7;
+}
+
+body.light-theme #expression,
+body.light-theme #result {
+  color: #1a0d22;
+}
+
+body.light-theme button.number {
+  background-color: #e6cae3;
+  color: #2f1731;
+}
+
+body.light-theme button.symbol {
+  background-color: #cb94ee;
+  color: #1b1212;
+}
+
+body.light-theme button.function {
+  background-color: #cb94ee;
+  color: #0e0713;
+}
+
+body.light-theme button.special {
+  background-color: #8c6ca079;
+  color: #09040c;
+}
+
+body.light-theme button.equals {
+  background-color: #cb94ee;
+  color: #0e0707;
+}
+
+body.light-theme .theme-toggle {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #333;
+}
+
+/* Tema escuro */
+body.dark-theme {
+  background-color: #000000;
+}
+
+body.dark-theme .calculator {
+  background-color: #000000;
+  color: white;
+}
+
+body.dark-theme #display-container {
+  background-color: #60047c;
+}
+
+body.dark-theme #expression,
+body.dark-theme #result {
+  color: white;
+}
+
+body.dark-theme button.number {
+  background-color: #a9a9a9;
+  color: #663d81;
+}
+
+body.dark-theme button.symbol {
+  background-color: #4f096b;
+  color: #eeeaf1;
+}
+
+body.dark-theme button.function {
+  background-color: #4f096b;
+  color: #f9f8fa;
+}
+
+body.dark-theme button.special {
+  background-color: #967cc8;
+  color: #fefdff;
+}
+
+body.dark-theme button.equals {
+  background-color: #4f096b;
+  color: #f4f4f5;
+}
+
+body.dark-theme .theme-toggle {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .calculator {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  button {
+    height: 60px;
+    font-size: 18px;
+  }
+
+  #expression {
+    font-size: 22px;
+  }
+
+  #result {
+    font-size: 28px;
+  }
+}

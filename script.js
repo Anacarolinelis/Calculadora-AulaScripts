@@ -1,67 +1,69 @@
+let expression = '';
+
+const expressionDisplay = document.getElementById('expression');
+const resultDisplay = document.getElementById('result');
+const buttons = document.querySelectorAll('.buttons button');
+const themeSelector = document.getElementById('theme');
+
+buttons.forEach(button => {
+  const value = button.dataset.value;
+  const action = button.dataset.action;
+
+  button.addEventListener('click', () => {
+    if (action === 'clear') {
+      clearDisplay();
+    } else if (action === 'backspace') {
+      backspace();
+    } else if (action === 'calculate') {
+      calculateResult();
+    } else if (value !== undefined) {
+      appendToDisplay(value);
+    }
+  });
+});
+
+themeSelector.addEventListener('change', changeTheme);
+
 function appendToDisplay(value) {
-    const display = document.getElementById('display');
-    display.value += value;
+  expression += value;
+  expressionDisplay.textContent = expression;
+  resultDisplay.textContent = '';
 }
 
 function clearDisplay() {
-    document.getElementById('display').value = '';
+  expression = '';
+  expressionDisplay.textContent = '0';
+  resultDisplay.textContent = '= 0';
 }
 
 function backspace() {
-    const display = document.getElementById('display');
-    display.value = display.value.slice(0, -1);
+  const current = expressionDisplay.textContent;
+  if (current.length > 1) {
+    expressionDisplay.textContent = current.slice(0, -1);
+  } else {
+    expressionDisplay.textContent = "0";
+  }
 }
 
 function calculateResult() {
-    const display = document.getElementById('display');
-    try {
-        display.value = eval(display.value);
-    } catch {
-        display.value = 'Erro';
-    }
+  try {
+    const result = eval(expression);
+    resultDisplay.textContent = '= ' + result;
+  } catch {
+    resultDisplay.textContent = 'Erro';
+  }
 }
 
-function calculateInterest() {
-    const principal = parseFloat(prompt("Valor principal:"));
-    const rate = parseFloat(prompt("Taxa de juros (%):"));
-    const interest = (principal * rate ) / 100;
-    alert("Juros: " + interest);
+function changeTheme() {
+  const selectedTheme = themeSelector.value;
+  document.body.classList.toggle('light-theme', selectedTheme === 'light');
+  document.body.classList.toggle('dark-theme', selectedTheme === 'dark');
 }
 
-function calculateInstallments() {
-    const principal = parseFloat(prompt("Valor do empréstimo:"));
-    const rate = parseFloat(prompt("Taxa de juros (%):")) / 100 / 12;
-    const months = parseInt(prompt("Número de meses:"));
-    const installment = (principal * rate) / (1 - Math.pow(1 + rate, -months));
-    alert("Mensalidade: " + installment.toFixed(2));
-}
-let currentInput = "0";
-
-function appendToDisplay(value) {
-    if (currentInput === "0" && !isNaN(value)) {
-        currentInput = value; // Substitui o 0 inicial se um número for digitado
-    } else {
-        currentInput += value; // Adiciona o valor ao input atual
-    }
-    updateDisplay();
-}
-
-function clearDisplay() {
-    currentInput = "0"; // Limpa o display e retorna ao 0
-    updateDisplay();
-}
-
-function backspace() {
-    if (currentInput.length === 1) {
-        currentInput = "0"; // Se apenas um número, retorna ao 0
-    } else {
-        currentInput = currentInput.slice(0, -1); // Remove o último caractere
-    }
-    updateDisplay();
-}
-
-function updateDisplay() {
-    document.getElementById("display").value = currentInput;
-}
-
-// Funções adicionais para cálculo, juros, e mensalidades podem ser implementadas aqui
+// Inicialização ao carregar a página
+window.onload = () => {
+  document.body.classList.add('dark-theme');
+  expressionDisplay.textContent = '0';
+  resultDisplay.textContent = '= 0';
+  themeSelector.value = 'dark';
+};
